@@ -149,7 +149,7 @@ nav a:hover::after {
 }
 
 .btn:hover {
-    background: transparent;
+    background: #4f2c99;
 }
 
 .btn-secondary {
@@ -160,7 +160,7 @@ nav a:hover::after {
 
 .btn-secondary:hover {
     background: white;
-    color: #0e0d0d;
+    color: #4f2c68;
 }
 
 /* Seções */
@@ -172,7 +172,7 @@ nav a:hover::after {
     text-align: center;
     font-size: 2.2rem;
     margin-bottom: 50px;
-    color: #0e0d0d;
+    color: #4f2c68;
     position: relative;
 }
 
@@ -208,11 +208,11 @@ nav a:hover::after {
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(128, 2, 128, 0.295);
 }
 
 .card h3 {
-    color: #0e0d0d;
+    color: #4f2c68;
     margin-bottom: 15px;
     font-size: 1.3rem;
 }
@@ -261,7 +261,7 @@ nav a:hover::after {
 }
 
 .info-contato h3 {
-    color: #0e0d0d;
+    color: #4f2c68;
     margin: 20px 0 10px;
     font-size: 1.3rem;
 }
@@ -281,7 +281,7 @@ nav a:hover::after {
 }
 
 .info-contato a:hover {
-    color: #0e0d0d;
+    color: #4f2c99;
     text-decoration: underline;
 }
 
@@ -326,7 +326,7 @@ nav a:hover::after {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    color: #0e0d0d;
+    color: #4f2c68;
 }
 
 .contato-form input,
@@ -367,12 +367,12 @@ nav a:hover::after {
 }
 
 .contato-form button:hover {
-    background: #0e0d0d;
+    background: #4f2c99;
 }
 
 /* Footer */
 footer {
-    background: #0e0d0d;
+    background: #4f2c68;
     color: white;
     padding: 60px 0 0;
 }
@@ -444,7 +444,7 @@ footer {
 }
 
 .social-icons a:hover {
-    background: ;
+    background: #4f2c99;
 }
 
 .copyright {
@@ -493,7 +493,7 @@ footer {
         top: 100%;
         left: 0;
         width: 100%;
-        background: #0e0d0d;
+        background: #4f2c68;
         padding: 20px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         flex-direction: column;
