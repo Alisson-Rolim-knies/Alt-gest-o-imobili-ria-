@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento</title>
+    <link rel="icon" type="image/png" href="./img/logo.jpeg">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    <section id="contato" class="section white">
+        <div class="container">
+            <h2>Solicitar Orçamento</h2>
+            <form action="https://formspree.io/f/xldbepzn" method="POST" class="contato-form">
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="Seu telefone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail </label>
+                        <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="condomínio">condomínio</label>
+                        <input type="text" id="text" name="condomínio" placeholder="Nome do seu condomínio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Unidade/Apartamento">Unidade/Apartamento</label>
+                        <input type="text" id="text" name="Unidade/Apartamento"
+                            placeholder="Digiti aqui a sua unidade ou numero do Apartamento">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" placeholder="Digiti aqui sua mensagem..."
+                        rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn">
+                    <i class="fas fa-paper-plane"></i> Enviar Agendamento
+                </button>
+            </form>
+        </div>
+    </section>
+
+</body>
+
+</html>
