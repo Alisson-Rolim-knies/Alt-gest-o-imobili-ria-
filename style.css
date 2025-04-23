@@ -84,8 +84,8 @@ nav a:hover::after {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./img/4.png') no-repeat center center/cover;
-    color: white;
+    background: linear-gradient(rgba(41, 40, 40, 0.7), rgba(14, 14, 14, 0.253)), url('./img/4.png') no-repeat center center/cover;
+    color: #4f2c68;
     padding: 100px 0;
     text-align: center;
 }
@@ -181,7 +181,6 @@ nav a:hover::after {
     display: block;
     width: 80px;
     height: 4px;
-    background: ;
     margin: 15px auto;
 }
 
@@ -344,7 +343,6 @@ nav a:hover::after {
 .contato-form input:focus,
 .contato-form textarea:focus,
 .contato-form select:focus {
-    border-color: ;
     outline: none;
 }
 
@@ -356,7 +354,6 @@ nav a:hover::after {
 .contato-form button {
     width: 100%;
     padding: 15px;
-    background: ;
     color: white;
     border: none;
     border-radius: 5px;
@@ -418,7 +415,6 @@ footer {
     transition: color 0.3s ease;
 }
 
-.footer-links a:hover {}
 
 .footer-social h3 {
     font-size: 1.5rem;
@@ -448,6 +444,7 @@ footer {
 }
 
 .copyright {
+    background: linear-gradient(rgb(78, 8, 85, 0.7), rgba(3, 0, 3)), url('#') no-repeat center center/cover;
     text-align: center;
     padding: 20px 0;
     border-top: 1px solid #333;
