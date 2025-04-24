@@ -1,61 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orçamento</title>
     <link rel="icon" type="image/png" href="./img/logo.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <script defer src="script.js"></script>
 </head>
-
 
 <body>
     <section id="contato" class="section white">
         <div class="container">
             <h2>Solicitar Orçamento</h2>
             <form action="https://formspree.io/f/xldbepzn" method="POST" class="contato-form">
+
                 <div class="form-group">
                     <label for="nome">Nome Completo do Interessado:</label>
                     <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
                 </div>
+
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="telefone">Cargo/Função no Condomínio:</label>
+                        <label for="cargo">Cargo/Função no Condomínio:</label>
+                        <input type="text" id="cargo" name="cargo" placeholder="Cargo/Função" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone de Contato:</label>
                         <input type="tel" id="telefone" name="telefone" placeholder="Seu telefone" required>
                     </div>
-                    <div class="form-group">
-                        <label for="telefone">Telefone de Contato: </label>
-                        <input type="telefone" id="telefone" name="telefone" placeholder="Seu telefone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail </label>
-                        <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
-                    </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="Nome do Condomínio:">Nome do Condomínio::</label>
-                        <input type="text" id="text" name="Nome do Condomínio:" placeholder="Nome do Condomínio:"
-                            required>
+                        <label for="condominio">Nome do Condomínio:</label>
+                        <input type="text" id="condominio" name="condominio" placeholder="Nome do Condomínio" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="endereco">Endereço Completo:</label>
+                        <input type="text" id="endereco" name="endereco"
+                            placeholder="Digite aqui o endereço completo...">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cnpj">Possui CNPJ: se sim, digite o número do CNPJ</label>
+                        <input type="text" id="cnpj" name="cnpj" placeholder="Digite o número do CNPJ...">
                     </div>
                     <div class="form-group">
-                        <label for="Endereço Completo:">Endereço Completo:</label>
-                        <input type="text" id="text" name="Endereço Completo:"
-                            placeholder="Digiti aqui a sua unidade ou numero do Apartamento">
+                        <label for="unidades">Número Total de Unidades:</label>
+                        <input type="number" id="unidades" name="unidades">
                     </div>
                 </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ppci">O PPCI está vigente:</label>
+                        <select class="form-select" id="ppci" name="ppci" required>
+                            <option value="" selected disabled>Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                            <option value="Não sei dizer">Não sei dizer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo">Tipo de Condomínio:</label>
+                        <select class="form-select" id="tipo" name="tipo" required>
+                            <option value="" selected disabled>Selecione</option>
+                            <option value="Residencial">Residencial</option>
+                            <option value="Comercial">Comercial</option>
+                            <option value="Misto">Misto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="lazer">Possui Áreas de Lazer?</label>
+                        <select class="form-select" id="lazer" name="lazer" required>
+                            <option value="" selected disabled>Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sindico">Necessita de Síndico Profissional?</label>
+                        <select class="form-select" id="sindico" name="sindico" required>
+                            <option value="" selected disabled>Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label for="mensagem">Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" placeholder="Digiti aqui sua mensagem..."
+                    <label for="mensagem">Há alguma informação adicional que você gostaria de compartilhar?</label>
+                    <textarea id="mensagem" name="mensagem" placeholder="Digite aqui sua mensagem..."
                         rows="4"></textarea>
                 </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="origem">Como você ficou sabendo da nossa empresa?</label>
+                        <select class="form-select" id="origem" name="origem" required>
+                            <option value="" selected disabled>Selecione</option>
+                            <option value="Indicação">Indicação</option>
+                            <option value="Pesquisa na Internet">Pesquisa na Internet</option>
+                            <option value="Redes Sociais">Redes Sociais</option>
+                            <option value="Outros">Outros...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="outros">Outros (Especificar):</label>
+                        <textarea id="outros" name="outros" placeholder="Digite aqui..." rows="4"></textarea>
+                    </div>
+                </div>
+
                 <button type="submit" class="btn">
-                    <i class="fas fa-paper-plane"></i> Enviar Agendamento
+                    <i class="fas fa-paper-plane"></i> Solicitar orçamento
                 </button>
             </form>
         </div>
     </section>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <div id="whatsapp-button">
+        <a href="https://wa.me/55991016243" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
 </body>
 
