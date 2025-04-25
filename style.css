@@ -19,6 +19,11 @@ body {
     padding: 0 20px;
 }
 
+.container img {
+    display: block;
+    margin: 0 auto;
+}
+
 /* Header */
 header {
     background: linear-gradient(rgba(3, 0, 3), rgb(78, 8, 85, 0.7)), url('#') no-repeat center center/cover;

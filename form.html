@@ -16,6 +16,7 @@
 <body>
     <section id="contato" class="section white">
         <div class="container">
+            <img src="./img/logo.jpeg" alt="Logo da Alt" width="180">
             <h2>Solicitar Orçamento</h2>
             <form action="https://formspree.io/f/xldbepzn" method="POST" class="contato-form">
 
@@ -61,7 +62,7 @@
                         <input type="text" id="cnpj" name="cnpj" placeholder="Digite o número do CNPJ...">
                     </div>
                     <div class="form-group">
-                        <label for="unidades">Número Total de Unidades:</label>
+                        <label for="unidades">Número Total de Unidades:</label> <br>
                         <input type="number" id="unidades" name="unidades">
                     </div>
                 </div>
@@ -89,13 +90,24 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="lazer">Possui Áreas de Lazer?</label>
-                        <select class="form-select" id="lazer" name="lazer" required>
+                        <label for="agua">Possui Leitura de água?</label>
+                        <select class="form-select" id="agua" name="agua" required>
                             <option value="" selected disabled>Selecione</option>
                             <option value="Sim">Sim</option>
                             <option value="Não">Não</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="agua">Sobre a leitura de gás:</label>
+                        <select class="form-select" id="agua" name="agua" required>
+                            <option value="" selected disabled>Selecione</option>
+                            <option value="Sim">Boleto do condomínio</option>
+                            <option value="Sim">Terceirizada</option>
+                            <option value="Não">Não possui</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group">
                         <label for="sindico">Necessita de Síndico Profissional?</label>
                         <select class="form-select" id="sindico" name="sindico" required>
