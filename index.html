@@ -10,14 +10,17 @@
     <meta name="theme-color" content="#4f2c68">
     <title>Alt Gestão de Condomínios | Santa Maria, RS</title>
     <link rel="icon" type="image/png" href="assets/img/simbolo.png">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+    >
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/refinements.css">
   </head>
   <body>
     <a class="skip" href="#principal">Pular para o conteúdo</a>
     <header>
       <div class="container nav">
-        <a class="brand" href="#inicio" aria-label="Alt Gestão, início"><img class="official-logo" src="assets/img/logo-roxa.png" alt="Alt Gestão de Condomínios" width="500" height="500"></a>
+        <a class="brand" href="#inicio" aria-label="Alt Gestão, início"><img class="official-logo" src="assets/img/logo-roxa.png" alt="Alt Gestão de Condomínios" width="500" height="500" decoding="async"></a>
         <button class="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Abrir menu">☰</button>
         <nav id="navigation" aria-label="Navegação principal">
           <a href="#servicos">Serviços</a>
@@ -32,19 +35,16 @@
       <section class="hero container" id="inicio">
         <div class="hero-copy">
           <p class="eyebrow"><span></span> SANTA MARIA · RS</p>
-          <h1>Juntos, fazemos<br>uma gestão <em>melhor.</em></h1>
-          <p class="lead">Síndico, conselho, moradores e administradora trabalhando na mesma direção. Esse é o jeito Alt de cuidar do seu condomínio.</p>
+          <h1>Uma gestão feita<br><em>com você.</em></h1>
+          <p class="lead">Pessoas, conhecimento e soluções para cuidar do seu condomínio.</p>
           <div class="actions">
             <a class="button primary" href="#contato">Solicitar uma proposta</a>
             <a class="text-link" href="#servicos">Conheça nossos serviços</a>
           </div>
-          <div class="hero-bottom">
-            <span class="small-icon">✓</span>
-            <p>Gestão próxima.<br><strong>Somando pessoas, conhecimentos e soluções.</strong></p>
-          </div>
         </div>
         <div
           class="hero-visual hero-carousel"
+          style="--carousel-total: 9"
           role="region"
           aria-roledescription="carrossel"
           aria-label="Condomínios administrados pela Alt"
@@ -52,59 +52,80 @@
           <div class="hero-slides">
             <img
               class="hero-slide is-active"
-              src="assets/img/vista-do-vale.png"
-              alt="Residencial Vista do Vale, Santa Maria"
-              width="377"
-              height="669"
+              src="assets/img/ocean.webp"
+              alt="Edifício Residencial Ocean, Santa Maria"
+              width="544"
+              height="306"
+              aria-hidden="false"
+              decoding="async"
               fetchpriority="high"
             >
             <img
               class="hero-slide"
-              src="assets/img/ocean.png"
-              alt="Edifício Residencial Ocean, Santa Maria"
-              width="544"
-              height="306"
+              src="assets/img/vista-do-vale.webp"
+              alt="Residencial Vista do Vale, Santa Maria"
+              width="377"
+              height="669"
+              decoding="async"
               aria-hidden="true"
             >
             <img
               class="hero-slide"
-              src="assets/img/vale-das-pedras.png"
+              src="assets/img/vale-das-pedras.webp"
               alt="Residencial Vale das Pedras, Santa Maria"
               width="296"
               height="420"
               aria-hidden="true"
+              decoding="async"
             >
             <img
               class="hero-slide"
-              src="assets/img/oliveiras.png"
+              src="assets/img/oliveiras.webp"
               alt="Residencial Oliveiras, Santa Maria"
               width="297"
               height="383"
               aria-hidden="true"
+              decoding="async"
             >
+                      <img class="hero-slide" src="assets/img/tassia.webp" alt="Condomínio Tassia" width="787" height="1400" aria-hidden="true" decoding="async" loading="lazy" style="object-position: center 38%">
+            <img class="hero-slide" src="assets/img/torre-de-vicenza.webp" alt="Condomínio Torre de Vicenza" width="787" height="1400" aria-hidden="true" decoding="async" loading="lazy" style="object-position: center 38%">
+            <img class="hero-slide" src="assets/img/sol-da-montanha.webp" alt="Condomínio Sol da Montanha" width="1231" height="1278" aria-hidden="true" decoding="async" loading="lazy" style="object-position: center 38%">
+            <img class="hero-slide" src="assets/img/bella-vista.webp" alt="Condomínio Bella Vista" width="1335" height="1178" aria-hidden="true" decoding="async" loading="lazy" style="object-position: center 38%">
+            <img class="hero-slide" src="assets/img/di-trento.webp" alt="Condomínio Di Trento" width="1388" height="1133" aria-hidden="true" decoding="async" loading="lazy" style="object-position: center 38%">
           </div>
           <button class="carousel-pause" type="button" aria-label="Pausar troca automática de fotos">Pausar</button>
           <div class="image-label">
             <span>Gestão de verdade.<br>Parceria todos os dias.</span>
-            <small id="hero-condo-name">RESIDENCIAL VISTA DO VALE · SANTA MARIA</small>
+            <small id="hero-condo-name">EDIFÍCIO RESIDENCIAL OCEAN · SANTA MARIA</small>
           </div>
           <div class="carousel-controls" aria-label="Escolher condomínio">
-            <button type="button" class="carousel-dot is-active" aria-label="Mostrar Residencial Vista do Vale" aria-pressed="true"></button>
-            <button type="button" class="carousel-dot" aria-label="Mostrar Edifício Residencial Ocean" aria-pressed="false"></button>
+            <button type="button" class="carousel-dot is-active" aria-label="Mostrar Edifício Residencial Ocean" aria-pressed="true"></button>
+            <button type="button" class="carousel-dot" aria-label="Mostrar Residencial Vista do Vale" aria-pressed="false"></button>
             <button type="button" class="carousel-dot" aria-label="Mostrar Residencial Vale das Pedras" aria-pressed="false"></button>
             <button type="button" class="carousel-dot" aria-label="Mostrar Residencial Oliveiras" aria-pressed="false"></button>
+                      <button type="button" class="carousel-dot" aria-label="Mostrar Tassia" aria-pressed="false"></button>
+            <button type="button" class="carousel-dot" aria-label="Mostrar Torre de Vicenza" aria-pressed="false"></button>
+            <button type="button" class="carousel-dot" aria-label="Mostrar Sol da Montanha" aria-pressed="false"></button>
+            <button type="button" class="carousel-dot" aria-label="Mostrar Bella Vista" aria-pressed="false"></button>
+            <button type="button" class="carousel-dot" aria-label="Mostrar Di Trento" aria-pressed="false"></button>
           </div>
-          <span class="carousel-count" aria-hidden="true">01 / 04</span>
+          <span class="carousel-count" aria-hidden="true">01 / 09</span>
         </div>
-        <div class="hero-index">01 / CUIDADO QUE FAZ DIFERENÇA</div>
+        <aside class="hero-portrait alt-banner" aria-label="Alt Gestão de Condomínios">
+          <div class="banner-brand">
+            <img class="banner-logo" src="assets/img/logo-branca.png" alt="Alt Gestão de Condomínios" width="500" height="500" decoding="async">
+            <span>Santa Maria · RS</span>
+          </div>
+          <div class="banner-copy">
+            <p class="banner-eyebrow">SOMANDO PESSOAS E SOLUÇÕES</p>
+            <h3>Seu condomínio bem cuidado, todos os dias.</h3>
+            <div class="banner-pillars" aria-label="Nossos três pilares">
+              <span>Regularizar</span><span>Revitalizar</span><span>Reduzir</span>
+            </div>
+            <a class="banner-link" href="#sobre">Conheça o jeito Alt de cuidar</a>
+          </div>
+        </aside>
       </section>
-      <div class="values">
-        <div class="container values-grid">
-          <span><b>01</b> Transparência nas contas</span>
-          <span><b>02</b> Apoio para o síndico</span>
-          <span><b>03</b> Atendimento próximo</span>
-        </div>
-      </div>
       <section class="section container" id="servicos">
         <div class="section-heading">
           <div>
@@ -150,27 +171,12 @@
         <div class="container about-grid">
           <div>
             <p class="eyebrow">A HISTÓRIA POR TRÁS DA ALT</p>
-            <h2>Ninguém faz<br>uma boa gestão<br><em>sozinho.</em></h2>
-            <p>A Alt nasceu em Santa Maria para modernizar a administração condominial. Nosso nome vem da tecla Alt: é em combinação com outras teclas que ela cria novas possibilidades.</p>
-            <p>Na gestão, acreditamos nessa mesma força. Síndico, conselho, moradores, administradora e prestadores têm papéis diferentes. Quando trabalham juntos, o condomínio ganha organização, diálogo e capacidade de evoluir.</p>
-            <a class="button light" href="https://wa.me/5555991016243" target="_blank" rel="noopener">Conheça nosso jeito de trabalhar</a>
+            <h2>Ninguém faz uma<br>boa gestão <em>sozinho.</em></h2>
           </div>
-          <div class="about-list">
-            <div>
-              <span>01</span>
-              <h3>Pessoas que se conectam</h3>
-              <p>Escuta e parceria para entender a realidade de cada condomínio.</p>
-            </div>
-            <div>
-              <span>02</span>
-              <h3>Informação que aproxima</h3>
-              <p>Contas claras e comunicação para apoiar decisões em conjunto.</p>
-            </div>
-            <div>
-              <span>03</span>
-              <h3>Soluções que se somam</h3>
-              <p>Organização, tecnologia e acompanhamento das demandas do dia a dia.</p>
-            </div>
+          <div class="about-story">
+            <p>A Alt nasceu em Santa Maria para modernizar a administração condominial. Nosso nome vem da tecla Alt: é em combinação com outras teclas que ela cria novas possibilidades.</p>
+            <p>Na gestão, acreditamos nessa mesma força. Síndico, conselho, moradores, administradora e prestadores trabalhando juntos para organizar, resolver e evoluir.</p>
+            <a class="text-link" href="https://wa.me/5555991016243" target="_blank" rel="noopener">Converse com a Alt</a>
           </div>
         </div>
       </section>
@@ -178,7 +184,7 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow">NOSSA FILOSOFIA · OS 3 R’S</p>
-            <h2>Colocar em ordem.<br>Evoluir. Fazer render.</h2>
+            <h2>Três pilares. Um compromisso.</h2>
           </div>
           <p>Um caminho de gestão que respeita as prioridades e a realidade financeira de cada condomínio.</p>
         </div>
@@ -186,20 +192,20 @@
           <article>
             <span>R / 01</span>
             <h3>Regularizar</h3>
+            <h4>Organizar para avançar.</h4>
             <p>Organização do CNPJ, convenção, regimento interno, PPCI e acompanhamento de itens como extintores, equipamentos de segurança e caixa-d’água.</p>
-            <strong>Antes de transformar, é preciso organizar.</strong>
           </article>
           <article>
             <span>R / 02</span>
             <h3>Revitalizar</h3>
+            <h4>Cuidar para valorizar.</h4>
             <p>Um cronograma de melhorias construído com o síndico e o conselho, considerando as necessidades, as prioridades e os recursos disponíveis.</p>
-            <strong>Não basta manter, é preciso evoluir.</strong>
           </article>
           <article>
             <span>R / 03</span>
             <h3>Reduzir</h3>
+            <h4>Planejar para economizar.</h4>
             <p>Análise de contratos, fornecedores e despesas. Busca de oportunidades de negociação e de alternativas de eficiência, como energia solar e reaproveitamento de água.</p>
-            <strong>Mais eficiência para cuidar dos recursos.</strong>
           </article>
         </div>
       </section>
@@ -218,44 +224,48 @@
           <div class="portfolio-grid">
             <article>
               <img
-                src="assets/img/vista-do-vale.png"
+                src="assets/img/vista-do-vale.webp"
                 alt="Fachada do Residencial Vista do Vale"
                 loading="lazy"
                 width="377"
                 height="669"
+                decoding="async"
               >
               <h3>Residencial Vista do Vale</h3>
               <p>132 apartamentos</p>
             </article>
             <article>
               <img
-                src="assets/img/ocean.png"
+                src="assets/img/ocean.webp"
                 alt="Vista aérea do Edifício Residencial Ocean"
                 loading="lazy"
                 width="544"
                 height="306"
+                decoding="async"
               >
               <h3>Edifício Residencial Ocean</h3>
               <p>160 apartamentos</p>
             </article>
             <article>
               <img
-                src="assets/img/vale-das-pedras.png"
+                src="assets/img/vale-das-pedras.webp"
                 alt="Fachada do Residencial Vale das Pedras"
                 loading="lazy"
                 width="296"
                 height="420"
+                decoding="async"
               >
               <h3>Residencial Vale das Pedras</h3>
               <p>24 apartamentos</p>
             </article>
             <article>
               <img
-                src="assets/img/oliveiras.png"
+                src="assets/img/oliveiras.webp"
                 alt="Entrada do Residencial Oliveiras"
                 loading="lazy"
                 width="297"
                 height="383"
+                decoding="async"
               >
               <h3>Residencial Oliveiras</h3>
               <p>60 apartamentos</p>
@@ -272,11 +282,12 @@
         </div>
         <article>
           <img
-            src="assets/img/albert.jpeg"
+            src="assets/img/albert.webp"
             alt="Albert Knies, diretor da Alt"
             loading="lazy"
             width="360"
             height="640"
+            decoding="async"
           >
           <h3>Albert Knies</h3>
           <span>Diretor</span>
@@ -284,11 +295,12 @@
         </article>
         <article>
           <img
-            src="assets/img/wendel.jpeg"
+            src="assets/img/wendel.webp"
             alt="Wendel Nunes, administrativo e financeiro da Alt"
             loading="lazy"
             width="360"
             height="640"
+            decoding="async"
           >
           <h3>Wendel Nunes</h3>
           <span>Administrativo / Financeiro</span>
@@ -351,7 +363,7 @@
       <section class="section container contact" id="contato">
         <div>
           <p class="eyebrow">VAMOS CONVERSAR</p>
-          <h2>O próximo passo<br>do seu condomínio<br>começa aqui.</h2>
+          <h2>Vamos cuidar do seu condomínio?</h2>
           <p class="contact-intro">Conte o que você precisa. Vamos abrir sua mensagem no WhatsApp para você enviar à nossa equipe.</p>
           <a class="contact-phone" href="tel:+5555991016243">(55) 99101-6243</a>
           <a class="contact-email" href="mailto:administrativo@altgestaodecondominios.com">administrativo@altgestaodecondominios.com</a>
@@ -384,18 +396,8 @@
             placeholder="(55) 99999-9999"
             maxlength="30"
           >
-          <label for="email">E-mail <span>(opcional)</span></label>
-          <input id="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" maxlength="150">
-          <div class="form-row">
-            <div>
-              <label for="condo">Condomínio</label>
-              <input id="condo" placeholder="Nome do condomínio" maxlength="100">
-            </div>
-            <div>
-              <label for="unit">Unidade</label>
-              <input id="unit" placeholder="Apartamento / sala" maxlength="50">
-            </div>
-          </div>
+          <label for="condo">Condomínio</label>
+          <input id="condo" placeholder="Nome do condomínio" maxlength="100">
           <label for="message">Sua mensagem *</label>
           <textarea
             id="message"
@@ -431,7 +433,7 @@
     </main>
     <footer>
       <div class="container footer-top">
-        <a class="brand" href="#inicio"><img class="official-logo" src="assets/img/logo-branca.png" alt="Alt Gestão de Condomínios" width="500" height="500"></a>
+        <a class="brand" href="#inicio"><img class="official-logo" src="assets/img/logo-branca.png" alt="Alt Gestão de Condomínios" width="500" height="500" decoding="async"></a>
         <p>Somando pessoas, conhecimentos<br>e soluções para o seu condomínio.</p>
         <a href="https://web.ucondo.com.br/login.aspx" target="_blank" rel="noopener">Área do cliente</a>
       </div>
