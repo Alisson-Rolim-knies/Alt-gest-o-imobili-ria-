@@ -1,0 +1,11 @@
+SITE ALT — PROJETO ORGANIZADO
+
+index.html: página principal
+assets/css/: estilos
+assets/js/: interações e carrossel
+assets/img/: fotos, logotipos e ícone
+
+Extraia o ZIP em uma nova pasta e abra ALT-site no VS Code.
+Abra index.html no navegador para conferir.
+Para publicar, mantenha a estrutura de pastas e envie index.html e assets para a pasta pública do domínio.
+O formulário abre a mensagem no WhatsApp.

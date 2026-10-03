@@ -1,258 +1,447 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alt Gestão de Condomínios</title>
-    <meta name="description" content="Alt gestão imobiliaria ltda.">
-    <link rel="icon" type="image/png" href="./img/logo.jpeg">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYF77EZ6SS"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-NYF77EZ6SS');
-    </script>
-    <script defer src="script.js"></script>
-</head>
-
-<body>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta
+      name="description"
+      content="Alt Gestão de Condomínios em Santa Maria: apoio ao síndico, organização financeira e atendimento próximo. Conheça nossos serviços."
+    >
+    <meta name="theme-color" content="#4f2c68">
+    <title>Alt Gestão de Condomínios | Santa Maria, RS</title>
+    <link rel="icon" type="image/png" href="assets/img/simbolo.png">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/refinements.css">
+  </head>
+  <body>
+    <a class="skip" href="#principal">Pular para o conteúdo</a>
     <header>
-        <div class="container header-container" id="header">
-            <a href="#header"><img src="./img/4.png " alt=" Logo da Alt - Gestão de imobiliaria"></a>
-            <nav id="nav">
-                <a href="#servicos">Serviços</a>
-                <a href="#sobre">Sobre</a>
-                <a href="#localizacao">Localização</a>
-                <a href="#contato">Contato</a>
-                <a href="https://web.ucondo.com.br/login.aspx" target="_blank">Área do cliente</a>
-            </nav>
-            <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
+      <div class="container nav">
+        <a class="brand" href="#inicio" aria-label="Alt Gestão, início"><img class="official-logo" src="assets/img/logo-roxa.png" alt="Alt Gestão de Condomínios" width="500" height="500"></a>
+        <button class="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Abrir menu">☰</button>
+        <nav id="navigation" aria-label="Navegação principal">
+          <a href="#servicos">Serviços</a>
+          <a href="#sobre">A Alt</a>
+          <a href="#condominios">Condomínios</a>
+          <a href="#contato">Contato</a>
+          <a class="client" href="https://web.ucondo.com.br/login.aspx" target="_blank" rel="noopener">Área do cliente</a>
+        </nav>
+      </div>
     </header>
-
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>Alt Gestão </h1>
-                <h2>Soluções em gestão de condomínios</h2>
-                <p>
-                    A ALT Gestão imobiliaria nasceu com o propósito de modernizar a administração condominial em
-                    Santa Maria - RS. Atuamos com foco em resultados, oferecendo suporte completo ao síndico e atendendo
-                    as necessidades dos condôminos com agilidade e dedicação.
-                </p>
-                <div class="hero-buttons">
-                    <a href="./form.html" target="_blank" class="btn">Solicite seu orçamento</a>
-                    <a href="tel:+5555991016243" class="btn btn-secondary">
-                        <i class="fas fa-phone"></i> Ligue agora
-                    </a>
-                </div>
+    <main id="principal">
+      <section class="hero container" id="inicio">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> SANTA MARIA · RS</p>
+          <h1>Juntos, fazemos<br>uma gestão <em>melhor.</em></h1>
+          <p class="lead">Síndico, conselho, moradores e administradora trabalhando na mesma direção. Esse é o jeito Alt de cuidar do seu condomínio.</p>
+          <div class="actions">
+            <a class="button primary" href="#contato">Solicitar uma proposta</a>
+            <a class="text-link" href="#servicos">Conheça nossos serviços</a>
+          </div>
+          <div class="hero-bottom">
+            <span class="small-icon">✓</span>
+            <p>Gestão próxima.<br><strong>Somando pessoas, conhecimentos e soluções.</strong></p>
+          </div>
+        </div>
+        <div
+          class="hero-visual hero-carousel"
+          role="region"
+          aria-roledescription="carrossel"
+          aria-label="Condomínios administrados pela Alt"
+        >
+          <div class="hero-slides">
+            <img
+              class="hero-slide is-active"
+              src="assets/img/vista-do-vale.png"
+              alt="Residencial Vista do Vale, Santa Maria"
+              width="377"
+              height="669"
+              fetchpriority="high"
+            >
+            <img
+              class="hero-slide"
+              src="assets/img/ocean.png"
+              alt="Edifício Residencial Ocean, Santa Maria"
+              width="544"
+              height="306"
+              aria-hidden="true"
+            >
+            <img
+              class="hero-slide"
+              src="assets/img/vale-das-pedras.png"
+              alt="Residencial Vale das Pedras, Santa Maria"
+              width="296"
+              height="420"
+              aria-hidden="true"
+            >
+            <img
+              class="hero-slide"
+              src="assets/img/oliveiras.png"
+              alt="Residencial Oliveiras, Santa Maria"
+              width="297"
+              height="383"
+              aria-hidden="true"
+            >
+          </div>
+          <button class="carousel-pause" type="button" aria-label="Pausar troca automática de fotos">Pausar</button>
+          <div class="image-label">
+            <span>Gestão de verdade.<br>Parceria todos os dias.</span>
+            <small id="hero-condo-name">RESIDENCIAL VISTA DO VALE · SANTA MARIA</small>
+          </div>
+          <div class="carousel-controls" aria-label="Escolher condomínio">
+            <button type="button" class="carousel-dot is-active" aria-label="Mostrar Residencial Vista do Vale" aria-pressed="true"></button>
+            <button type="button" class="carousel-dot" aria-label="Mostrar Edifício Residencial Ocean" aria-pressed="false"></button>
+            <button type="button" class="carousel-dot" aria-label="Mostrar Residencial Vale das Pedras" aria-pressed="false"></button>
+            <button type="button" class="carousel-dot" aria-label="Mostrar Residencial Oliveiras" aria-pressed="false"></button>
+          </div>
+          <span class="carousel-count" aria-hidden="true">01 / 04</span>
+        </div>
+        <div class="hero-index">01 / CUIDADO QUE FAZ DIFERENÇA</div>
+      </section>
+      <div class="values">
+        <div class="container values-grid">
+          <span><b>01</b> Transparência nas contas</span>
+          <span><b>02</b> Apoio para o síndico</span>
+          <span><b>03</b> Atendimento próximo</span>
+        </div>
+      </div>
+      <section class="section container" id="servicos">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">O QUE FAZEMOS</p>
+            <h2>Uma gestão completa.<br>Um dia a dia mais simples.</h2>
+          </div>
+          <p>Da organização das contas à convivência entre moradores, cada detalhe merece atenção.</p>
+        </div>
+        <div class="services">
+          <article>
+            <span class="service-no">01 / FINANÇAS</span>
+            <h3>Gestão financeira<br>transparente</h3>
+            <p>Prestação de contas clara para acompanhar despesas e planejar os próximos passos do condomínio.</p>
+          </article>
+          <article>
+            <span class="service-no">02 / SUPORTE</span>
+            <h3>Consultoria<br>para síndicos</h3>
+            <p>Acompanhamento administrativo e operacional para apoiar o síndico nas decisões e nas rotinas do condomínio.</p>
+          </article>
+          <article>
+            <span class="service-no">03 / PATRIMÔNIO</span>
+            <h3>Modernização<br>e revitalização</h3>
+            <p>Planejamento de melhorias com foco no conforto, na segurança e na valorização dos espaços.</p>
+          </article>
+          <article>
+            <span class="service-no">04 / PESSOAS</span>
+            <h3>Atendimento<br>personalizado</h3>
+            <p>Escuta atenta e acompanhamento das demandas de cada condomínio.</p>
+          </article>
+          <article>
+            <span class="service-no">05 / PARTICIPAÇÃO</span>
+            <h3>Assembleias<br>digitais</h3>
+            <p>Mais comodidade para participar das discussões e decisões da comunidade.</p>
+          </article>
+          <article>
+            <span class="service-no">06 / CONVIVÊNCIA</span>
+            <h3>Gestão<br>de conflitos</h3>
+            <p>Mediação e diálogo para ajudar a construir uma convivência mais equilibrada.</p>
+          </article>
+        </div>
+      </section>
+      <section class="about" id="sobre">
+        <div class="container about-grid">
+          <div>
+            <p class="eyebrow">A HISTÓRIA POR TRÁS DA ALT</p>
+            <h2>Ninguém faz<br>uma boa gestão<br><em>sozinho.</em></h2>
+            <p>A Alt nasceu em Santa Maria para modernizar a administração condominial. Nosso nome vem da tecla Alt: é em combinação com outras teclas que ela cria novas possibilidades.</p>
+            <p>Na gestão, acreditamos nessa mesma força. Síndico, conselho, moradores, administradora e prestadores têm papéis diferentes. Quando trabalham juntos, o condomínio ganha organização, diálogo e capacidade de evoluir.</p>
+            <a class="button light" href="https://wa.me/5555991016243" target="_blank" rel="noopener">Conheça nosso jeito de trabalhar</a>
+          </div>
+          <div class="about-list">
+            <div>
+              <span>01</span>
+              <h3>Pessoas que se conectam</h3>
+              <p>Escuta e parceria para entender a realidade de cada condomínio.</p>
             </div>
-            <img src="./img/4.png" alt="Imagem ilustrativa de vistoria veicular">
-        </div>
-    </section>
-
-    <section id="servicos" class="section servicos">
-        <div class="container">
-            <h2>Nossos Serviços</h2>
-            <div class="cards">
-                <div class="card">
-                    <i class="fa-solid fa-circle-user"></i>
-                    <h3>Consultoria para Síndicos</h3>
-                    <p>Acompanhamento completo para síndicos com suporte jurídico, administrativo e operacional,
-                        garantindo segurança e tranquilidade na gestão.</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <h3>Modernização e Revitalização</h3>
-                    <p>Planejamento e execução de melhorias em condomínios antigos, trazendo mais conforto, segurança e
-                        valorização ao patrimônio.</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-file-contract"></i>
-                    <h3>Gestão Financeira Transparente</h3>
-                    <p>Controle eficiente das finanças, com prestação de contas clara, acessível e atualizada para todos
-                        os condôminos.</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-user-tie"></i>
-                    <h3>Atendimento Personalizado</h3>
-                    <p>Equipe dedicada com atendimento humanizado, prontos para resolver demandas com agilidade e
-                        eficiência.</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-earth-americas"></i>
-                    <h3>Assembleias Digitais</h3>
-                    <p>Facilitamos a participação dos condôminos por meio de assembleias online, promovendo inclusão,
-                        comodidade e maior engajamento.</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-users"></i>
-                    <h3>Gestão de Conflitos</h3>
-                    <p>Atuação proativa na mediação de conflitos e na prevenção de litígios, com foco em harmonia e
-                        convivência saudável.</p>
-                </div>
+            <div>
+              <span>02</span>
+              <h3>Informação que aproxima</h3>
+              <p>Contas claras e comunicação para apoiar decisões em conjunto.</p>
             </div>
-        </div>
-    </section>
-
-    <section id="sobre" class="section white">
-        <div class="container">
-            <h2>Gestão Transparente, Moderna e Comprometida.</h2>
-            <div class="sobre-content">
-                <div class="sobre-text">
-                    <p>
-                        Na nossa empresa, a prioridade é cuidar do seu condomínio com ética, eficiência e total
-                        transparência. Trabalhamos lado a lado com síndicos e moradores para manter a ordem, valorizar o
-                        patrimônio e facilitar o dia a dia de todos.
-
-                        Com tecnologia de ponta, garantimos uma gestão prática: você acompanha tudo em tempo real,
-                        acessa documentos, faz pagamentos e se comunica com agilidade pelos nossos canais digitais.
-
-                    <p>
-                        Se você busca uma administração séria, acessível e inovadora, fale com a gente. Solicite seu
-                        orçamento agora mesmo!
-                    </p>
-                    <div class="destaques">
-                        <div class="destaque-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Atendimento Personalizado</span>
-                        </div>
-                        <div class="destaque-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Gestão de Conflitos</span>
-                        </div>
-                        <div class="destaque-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Assembleias Digitais</span>
-                        </div>
-                    </div>
-                </div>
-                <img src="./img/logo.jpeg" alt="logo alt">
+            <div>
+              <span>03</span>
+              <h3>Soluções que se somam</h3>
+              <p>Organização, tecnologia e acompanhamento das demandas do dia a dia.</p>
             </div>
+          </div>
         </div>
-    </section>
-
-    <section id="localizacao" class="section">
+      </section>
+      <section class="section container pillars">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">NOSSA FILOSOFIA · OS 3 R’S</p>
+            <h2>Colocar em ordem.<br>Evoluir. Fazer render.</h2>
+          </div>
+          <p>Um caminho de gestão que respeita as prioridades e a realidade financeira de cada condomínio.</p>
+        </div>
+        <div class="pillars-grid">
+          <article>
+            <span>R / 01</span>
+            <h3>Regularizar</h3>
+            <p>Organização do CNPJ, convenção, regimento interno, PPCI e acompanhamento de itens como extintores, equipamentos de segurança e caixa-d’água.</p>
+            <strong>Antes de transformar, é preciso organizar.</strong>
+          </article>
+          <article>
+            <span>R / 02</span>
+            <h3>Revitalizar</h3>
+            <p>Um cronograma de melhorias construído com o síndico e o conselho, considerando as necessidades, as prioridades e os recursos disponíveis.</p>
+            <strong>Não basta manter, é preciso evoluir.</strong>
+          </article>
+          <article>
+            <span>R / 03</span>
+            <h3>Reduzir</h3>
+            <p>Análise de contratos, fornecedores e despesas. Busca de oportunidades de negociação e de alternativas de eficiência, como energia solar e reaproveitamento de água.</p>
+            <strong>Mais eficiência para cuidar dos recursos.</strong>
+          </article>
+        </div>
+      </section>
+      <section class="portfolio" id="condominios">
         <div class="container">
-            <h2>Onde Estamos</h2>
-            <div class="localizacao-content">
-                <div class="info-contato">
-                    <h3><i class="fas fa-map-marker-alt"></i> Endereço</h3>
-                    <p>Alameda Santiago do Chile, 115 - sala 502 - dores, Santa Maria - RS</p>
-
-                    <h3><i class="fas fa-clock"></i> Horário de Atendimento</h3>
-                    <p>Segunda a Sexta: 09h às 12:00h, 14:00h às 18:00h </p>
-                    <p>Sábado: Agendamento</p>
-
-                    <h3><i class="fas fa-phone"></i> Contato</h3>
-                    <p><a href="tel:+5549989226703">(55) 99101-6243</a></p>
-                    <p><a
-                            href="mailto:administrativo@altgestaodecondominios.com">administrativo@altgestaodecondominios.com</a>
-                    </p>
-                </div>
-                <div class="maps">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5767.524288934147!2d-53.793860800000004!3d-29.6928065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x412ab52ca32feaab%3A0x9802f4410f34d1ca!2sAlt%20Gest%C3%A3o%20de%20Condom%C3%ADnios!5e1!3m2!1spt-BR!2sbr!4v1745430242864!5m2!1spt-BR!2sbr"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">CONDOMÍNIOS QUE FAZEM PARTE DA NOSSA HISTÓRIA</p>
+              <h2>Parcerias construídas<br>no dia a dia.</h2>
             </div>
+            <div class="portfolio-stat">
+              <strong>26+</strong>
+              <p>condomínios em Santa Maria<br><small>Carteira apresentada em setembro de 2026</small></p>
+            </div>
+          </div>
+          <div class="portfolio-grid">
+            <article>
+              <img
+                src="assets/img/vista-do-vale.png"
+                alt="Fachada do Residencial Vista do Vale"
+                loading="lazy"
+                width="377"
+                height="669"
+              >
+              <h3>Residencial Vista do Vale</h3>
+              <p>132 apartamentos</p>
+            </article>
+            <article>
+              <img
+                src="assets/img/ocean.png"
+                alt="Vista aérea do Edifício Residencial Ocean"
+                loading="lazy"
+                width="544"
+                height="306"
+              >
+              <h3>Edifício Residencial Ocean</h3>
+              <p>160 apartamentos</p>
+            </article>
+            <article>
+              <img
+                src="assets/img/vale-das-pedras.png"
+                alt="Fachada do Residencial Vale das Pedras"
+                loading="lazy"
+                width="296"
+                height="420"
+              >
+              <h3>Residencial Vale das Pedras</h3>
+              <p>24 apartamentos</p>
+            </article>
+            <article>
+              <img
+                src="assets/img/oliveiras.png"
+                alt="Entrada do Residencial Oliveiras"
+                loading="lazy"
+                width="297"
+                height="383"
+              >
+              <h3>Residencial Oliveiras</h3>
+              <p>60 apartamentos</p>
+            </article>
+          </div>
         </div>
-    </section>
-
-    <section id="contato" class="section white">
-        <div class="container">
-            <h2>Entre em contato</h2>
-            <form action="https://formspree.io/f/xldbepzn" method="POST" class="contato-form">
-                <div class="form-group">
-                    <label for="nome">Nome Completo</label>
-                    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="Seu telefone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail (opcional)</label>
-                        <input type="email" id="email" name="email" placeholder="Seu e-mail">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="condomínio">condomínio</label>
-                        <input type="text" id="text" name="condomínio" placeholder="Nome do seu condomínio" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="Unidade/Apartamento">Unidade/Apartamento</label>
-                        <input type="text" id="text" name="Unidade/Apartamento"
-                            placeholder="Digiti aqui a sua unidade ou numero do Apartamento">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="mensagem">Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" placeholder="Digiti aqui sua mensagem..."
-                        rows="4"></textarea>
-                </div>
-                <button type="submit" class="btn">
-                    <i class="fas fa-paper-plane"></i> Enviar Mensagem
-                </button>
-            </form>
+      </section>
+      <section class="section container team">
+        <div class="team-intro">
+          <p class="eyebrow">QUEM CUIDA DA GESTÃO</p>
+          <h2>Pode contar<br>com a nossa equipe.</h2>
+          <p>Conhecimento técnico e proximidade para acompanhar síndicos e moradores.</p>
+          <a class="text-link" href="https://www.instagram.com/alt_gestao/" target="_blank" rel="noopener">Acompanhe a Alt no Instagram</a>
         </div>
-    </section>
-
+        <article>
+          <img
+            src="assets/img/albert.jpeg"
+            alt="Albert Knies, diretor da Alt"
+            loading="lazy"
+            width="360"
+            height="640"
+          >
+          <h3>Albert Knies</h3>
+          <span>Diretor</span>
+          <p>Formado em Direito pela FADISMA e em Gestão de Tecnologia da Informação. Mais de cinco anos de experiência em gestão condominial.</p>
+        </article>
+        <article>
+          <img
+            src="assets/img/wendel.jpeg"
+            alt="Wendel Nunes, administrativo e financeiro da Alt"
+            loading="lazy"
+            width="360"
+            height="640"
+          >
+          <h3>Wendel Nunes</h3>
+          <span>Administrativo / Financeiro</span>
+          <p>Responsável pelo financeiro, pelas rotinas administrativas e pelo suporte aos condomínios.</p>
+        </article>
+      </section>
+      <section class="operations">
+        <div class="container operations-grid">
+          <div>
+            <p class="eyebrow">ADMINISTRAÇÃO NO DIA A DIA</p>
+            <h2>As rotinas em ordem.<br>Você por dentro.</h2>
+            <ul>
+              <li>Emissão de boletos e controle financeiro</li>
+              <li>Acompanhamento de inadimplência</li>
+              <li>Gestão de prestadores de serviço</li>
+              <li>Planejamento orçamentário e balancetes</li>
+              <li>Comunicação e atendimento ao morador</li>
+            </ul>
+          </div>
+          <div class="platform">
+            <span class="platform-label">ÁREA DO CLIENTE · UCONDO</span>
+            <h3>Seu condomínio,<br>também no aplicativo.</h3>
+            <p>Acesse pelo app ou pela web para receber boletos, acompanhar balancetes, solicitar serviços e enviar chamados.</p>
+            <a class="button primary" href="https://web.ucondo.com.br/login.aspx" target="_blank" rel="noopener">Acessar a plataforma</a>
+          </div>
+        </div>
+      </section>
+      <section class="section container differences">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DIFERENCIAIS DA ALT</p>
+            <h2>Uma proposta clara.<br>Uma parceria completa.</h2>
+          </div>
+          <p>A administração inclui apoio às rotinas abaixo sem honorários administrativos extras.</p>
+        </div>
+        <div class="difference-grid">
+          <article>
+            <h3>Material de expediente</h3>
+            <p>Papelaria e materiais de rotina sem cobrança adicional.</p>
+          </article>
+          <article>
+            <h3>Assembleias e cartório</h3>
+            <p>Apoio na organização de assembleias e nos procedimentos cartoriais.</p>
+          </article>
+          <article>
+            <h3>Suporte ao síndico</h3>
+            <p>Acompanhamento na abertura de CNPJ e em grandes demandas, como a pintura do condomínio.</p>
+          </article>
+          <article>
+            <h3>Certidões negativas</h3>
+            <p>Emissão junto aos boletos das unidades, sem honorários adicionais.</p>
+          </article>
+        </div>
+        <aside class="legal-note">
+          <h3>Precisa de apoio especializado?</h3>
+          <p>Assessoria jurídica e serviços de cobrança podem ser contratados adicionalmente ou de forma independente, com orçamento e valores previamente acordados.</p>
+          <a href="#contato">Consultar serviços adicionais</a>
+        </aside>
+      </section>
+      <section class="section container contact" id="contato">
+        <div>
+          <p class="eyebrow">VAMOS CONVERSAR</p>
+          <h2>O próximo passo<br>do seu condomínio<br>começa aqui.</h2>
+          <p class="contact-intro">Conte o que você precisa. Vamos abrir sua mensagem no WhatsApp para você enviar à nossa equipe.</p>
+          <a class="contact-phone" href="tel:+5555991016243">(55) 99101-6243</a>
+          <a class="contact-email" href="mailto:administrativo@altgestaodecondominios.com">administrativo@altgestaodecondominios.com</a>
+          <div class="address">
+            <h3>Venha nos conhecer</h3>
+            <p>Alameda Santiago do Chile, 115, sala 502<br>Bairro Dores · Santa Maria, RS</p>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Alameda+Santiago+do+Chile+115+Santa+Maria+RS" target="_blank" rel="noopener">Ver localização no mapa</a>
+            <p class="hours">Segunda a sexta: 9h–12h e 14h–18h<br>Sábado: atendimento com agendamento</p>
+          </div>
+        </div>
+        <form id="proposal">
+          <h3>Como podemos ajudar?</h3>
+          <p class="form-intro">Preencha seus dados para iniciar a conversa.</p>
+          <label for="name">Seu nome *</label>
+          <input
+            id="name"
+            name="nome"
+            autocomplete="name"
+            required=""
+            placeholder="Nome completo"
+            maxlength="100"
+          >
+          <label for="phone">Telefone *</label>
+          <input
+            id="phone"
+            name="telefone"
+            type="tel"
+            autocomplete="tel"
+            required=""
+            placeholder="(55) 99999-9999"
+            maxlength="30"
+          >
+          <label for="email">E-mail <span>(opcional)</span></label>
+          <input id="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" maxlength="150">
+          <div class="form-row">
+            <div>
+              <label for="condo">Condomínio</label>
+              <input id="condo" placeholder="Nome do condomínio" maxlength="100">
+            </div>
+            <div>
+              <label for="unit">Unidade</label>
+              <input id="unit" placeholder="Apartamento / sala" maxlength="50">
+            </div>
+          </div>
+          <label for="message">Sua mensagem *</label>
+          <textarea
+            id="message"
+            required=""
+            rows="4"
+            placeholder="Gostaria de conhecer a gestão da Alt para meu condomínio…"
+            maxlength="2000"
+          ></textarea>
+          <button class="button primary" type="submit">Continuar no WhatsApp</button>
+          <p class="form-note">Você poderá revisar e enviar a mensagem no WhatsApp. Nenhum dado é enviado por este formulário antes disso.</p>
+        </form>
+      </section>
+      <section class="faq container">
+        <div>
+          <p class="eyebrow">DÚVIDAS FREQUENTES</p>
+          <h2>Informação que facilita.</h2>
+        </div>
+        <div>
+          <details>
+            <summary>Como solicito uma proposta para meu condomínio?</summary>
+            <p>Use o formulário acima ou entre em contato pelo WhatsApp. Informe o nome do condomínio e suas necessidades para iniciar o atendimento.</p>
+          </details>
+          <details>
+            <summary>Já sou cliente. Onde acesso a plataforma?</summary>
+            <p>A opção “Área do cliente” abre a plataforma uCondo. Utilize suas credenciais de acesso. Se precisar de ajuda, entre em contato com a Alt.</p>
+          </details>
+          <details>
+            <summary>Posso conversar com a equipe presencialmente?</summary>
+            <p>Sim. Nosso endereço e horários estão na seção de contato. Para combinar seu atendimento, fale com a equipe pelo WhatsApp.</p>
+          </details>
+        </div>
+      </section>
+    </main>
     <footer>
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <img src="./img/logo.jpeg" alt="Logo da Alt" width="180">
-                <p>Gestão Transparente, Moderna e Comprometida com Você.</p>
-            </div>
-            <div class="footer-info">
-                <h3>Alt - Gestão imobiliaria </h3>
-                <p>Soluções modernas para uma gestão segura.</p>
-                <p>CNPJ: ° 48.981.341/0001-11
-
-                </p>
-            </div>
-            <div class="footer-links">
-                <h3>Links Rápidos</h3>
-                <ul>
-                    <li><a href="#servicos"><i class="fas fa-chevron-right"></i> Serviços</a></li>
-                    <li><a href="#sobre"><i class="fas fa-chevron-right"></i> Sobre Nós</a></li>
-                    <li><a href="#localizacao"><i class="fas fa-chevron-right"></i> Localização</a></li>
-                    <li><a href="#contato"><i class="fas fa-chevron-right"></i> Contato</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h3>Redes Sociais</h3>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/alt_gestao/?igsh=a3dwMms3YWFwM2k1&utm_source=qr#" target="_blank"
-                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://api.whatsapp.com/send/?phone=5555991016243&text&type=phone_number&app_absent=0"
-                        target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; <span id="current-year">2025</span> Alt Gestão - Todos os direitos reservados.</p>
-        </div>
+      <div class="container footer-top">
+        <a class="brand" href="#inicio"><img class="official-logo" src="assets/img/logo-branca.png" alt="Alt Gestão de Condomínios" width="500" height="500"></a>
+        <p>Somando pessoas, conhecimentos<br>e soluções para o seu condomínio.</p>
+        <a href="https://web.ucondo.com.br/login.aspx" target="_blank" rel="noopener">Área do cliente</a>
+      </div>
+      <div class="container footer-bottom">
+        <span>© 2026 Alt Gestão de Condomínios</span>
+        <span>CNPJ 48.981.341/0001-11</span>
+        <span>Santa Maria · RS</span>
+      </div>
     </footer>
-
-    <!-- Botão WhatsApp Flutuante -->
-    <div id="whatsapp-button">
-        <a href="https://wa.me/55991016243" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
-</body>
-
+    <a class="floating" href="https://wa.me/5555991016243" target="_blank" rel="noopener" aria-label="Conversar com a Alt no WhatsApp">WhatsApp</a>
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
