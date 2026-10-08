@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 30,
+      "includeFiles": "assets/img/logo-roxa.png"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/solicitar-proposta",
+      "destination": "/solicitar-proposta.html"
+    },
+    {
+      "source": "/privacidade-propostas",
+      "destination": "/privacidade-propostas.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    }
+  ]
+}

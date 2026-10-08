@@ -1,0 +1,8 @@
+{
+  "name":"alt-site-propostas",
+  "private":true,
+  "type":"module",
+  "engines":{"node":">=22"},
+  "scripts":{"build":"node scripts/build.mjs","dev":"node --env-file-if-exists=.env.local scripts/dev.mjs","test":"node --test tests/*.test.mjs"},
+  "dependencies":{"@neondatabase/serverless":"1.0.2","pdf-lib":"1.17.1"}
+}

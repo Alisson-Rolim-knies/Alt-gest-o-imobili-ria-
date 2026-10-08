@@ -1,0 +1,4 @@
+export async function sendProposalMail(row,pdf,{key,from,to}){
+ if(!key||!from||!to)throw Object.assign(new Error('Mail configuration missing'),{code:'MISSING_MAIL'});
+ const response=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json','Idempotency-Key':`alt-proposal-${row.id}`},signal:AbortSignal.timeout(12000),body:JSON.stringify({from,to:[to],reply_to:row.email,subject:`Nova solicitação de proposta - ${row.condominio.replace(/[\r\n]/g,' ')}`,text:`Nova solicitação de proposta recebida pelo site.\n\nCondomínio: ${row.condominio}\nResponsável: ${row.responsavel}\nTelefone: ${row.telefone}\nProtocolo: ${row.protocol}\n\nTodas as respostas estão no PDF em anexo.`,attachments:[{filename:`ALT-proposta-${row.protocol}.pdf`,content:pdf.toString('base64')}]})});if(!response.ok)throw new Error('Mail delivery failed');
+}
