@@ -12,3 +12,30 @@ test('database failure never reports success; submission limit rejects repeated 
 test('HTTP endpoint rejects cross-origin and wrong methods; retry is protected',async()=>{const res=()=>({headers:{},setHeader(k,v){this.headers[k]=v},end(v){this.body=v}});let r=res();await handler({method:'GET',headers:{}},r);assert.equal(r.statusCode,405);r=res();await handler({method:'POST',headers:{origin:'https://evil.example','content-type':'application/json'}},r);assert.equal(r.statusCode,403);process.env.ALT_RETRY_TOKEN='x'.repeat(32);r=res();await retry({method:'POST',headers:{authorization:'Bearer wrong'}},r);assert.equal(r.statusCode,403);delete process.env.ALT_RETRY_TOKEN});
 test('PDF produces all stages, accented text and long answers without crashing',async()=>{const a={...answers,adicional:'Informações adicionais com acentos: água, gás, síndico. '.repeat(30),necessidade:'Atendimento 👋 e organização.'};const pdf=await createProposalPdf({protocol:'ALT-TESTE',created_at:'2026-10-08T02:20:00Z',answers:a,consent_version:'2026-10-08'});assert.ok(pdf.length>20000);assert.equal(pdf.subarray(0,4).toString(),'%PDF');await writeFile(join(tmpdir(),'ALT-proposta-teste.pdf'),pdf)});
 test('email sends PDF as attachment and sets reply-to without calling a real service',async()=>{const previous=globalThis.fetch;let sent;globalThis.fetch=async(url,opts)=>{sent={url,opts,body:JSON.parse(opts.body)};return{ok:true}};try{await sendProposalMail({id:'test',protocol:'ALT-TESTE',condominio:'Condomínio Teste',responsavel:'Teste',telefone:'(55)99999-1111',email:'teste@example.com'},Buffer.from('example-pdf'),{key:'fake-test-key',from:'teste@example.com',to:'destino@example.com'});assert.equal(sent.body.attachments[0].filename,'ALT-proposta-ALT-TESTE.pdf');assert.equal(Buffer.from(sent.body.attachments[0].content,'base64').toString(),'example-pdf');assert.equal(sent.body.reply_to,'teste@example.com')}finally{globalThis.fetch=previous}});
+
+test('quick request needs only six essentials, saves the total and sends the PDF once', async () => {
+  const minimal = {condominio: 'Condomínio Teste', cidade: 'Santa Maria / RS', unidades_total: '35', responsavel: 'Síndico Teste', telefone: '(55) 99999-1111', email: 'teste@example.com'};
+  const body = {...payload(), formVersion: 2, answers: minimal};
+  assert.deepEqual(validateSubmission(body), minimal);
+  const f = fixture({makePdf: createProposalPdf});
+  const first = await f.service.submit(body, 'quick-test');
+  const second = await f.service.submit(body, 'quick-test');
+  assert.equal(first.protocol, second.protocol);
+  assert.equal([...f.rows.values()][0].units, 35);
+  assert.equal([...f.rows.values()][0].notification_state, 'sent');
+  assert.equal(f.sends(), 1);
+});
+test('quick request rejects invalid essentials and accepts unknown optional details', () => {
+  const minimal = {condominio: 'Condomínio Teste', cidade: 'Santa Maria / RS', unidades_total: '35', responsavel: 'Síndico Teste', telefone: '(55) 99999-1111', email: 'teste@example.com'};
+  const quick = a => ({...payload(), formVersion: 2, answers: {...minimal, ...a}});
+  for (const change of [{unidades_total: ''}, {unidades_total: '0'}, {unidades_total: '-1'}, {unidades_total: '1.5'}, {email: 'inválido'}, {telefone: '123'}, {cidade: ''}]) {
+    assert.throws(() => validateSubmission(quick(change)));
+  }
+  assert.doesNotThrow(() => validateSubmission(quick({funcionarios: 'Sim', gas: 'Não sei informar'})));
+  assert.throws(() => validateSubmission(quick({funcionarios: 'Sim', quantidade_funcionarios: '-2'})));
+  assert.throws(() => validateSubmission({...quick({}), formVersion: 3}));
+  const gas = validateSubmission(quick({gas: 'Sim', gas_leitor: 'Empresa terceirizada', gas_empresa: 'Leituras Teste'}));
+  assert.equal(gas.gas_empresa, 'Leituras Teste');
+  const hidden = validateSubmission(quick({gas: 'Não', gas_leitor: 'Empresa terceirizada', gas_empresa: 'Leituras Teste'}));
+  assert.equal(hidden.gas_empresa, undefined);
+});

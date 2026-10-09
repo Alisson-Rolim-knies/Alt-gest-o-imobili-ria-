@@ -3,7 +3,7 @@ const yn = ["Sim", "Não", "Não sei informar"];
 export const priorities = ["Atendimento", "Organização", "Transparência financeira", "Tecnologia", "Agilidade na resolução de problemas", "Assessoria ao síndico", "Controle financeiro", "Redução de custos", "Comunicação com moradores", "Outro"];
 export const fields = [
     [{ key: "condominio", label: "Nome do condomínio", required: true, wide: true }, { key: "cnpj", label: "CNPJ (opcional)" }, { key: "cidade", label: "Cidade / UF", required: true }, { key: "endereco", label: "Endereço completo", required: true, wide: true }, { key: "responsavel", label: "Nome do síndico ou responsável", required: true, wide: true }, { key: "telefone", label: "Telefone / WhatsApp", type: "tel", required: true }, { key: "email", label: "E-mail", type: "email", required: true }],
-    [{ key: "unidades", label: "Unidades residenciais", type: "number", required: true }, { key: "garagens", label: "Vagas / boxes (opcional)", type: "number" }, { key: "comerciais", label: "Possui lojas ou salas comerciais?", options: yn }, { key: "quantidade_comerciais", label: "Quantidade de lojas / salas", type: "number", required: true, when: ["comerciais", "Sim"] }, { key: "funcionarios", label: "Possui funcionários próprios?", options: yn }, { key: "quantidade_funcionarios", label: "Quantidade de funcionários", type: "number", required: true, when: ["funcionarios", "Sim"] }, { key: "funcoes", label: "Funções (opcional)", when: ["funcionarios", "Sim"], wide: true }],
+    [{ key: "unidades_total", label: "Total de apartamentos, casas e salas", type: "number" }, { key: "unidades", label: "Unidades residenciais", type: "number", required: true }, { key: "garagens", label: "Vagas / boxes (opcional)", type: "number" }, { key: "comerciais", label: "Possui lojas ou salas comerciais?", options: yn }, { key: "quantidade_comerciais", label: "Quantidade de lojas / salas", type: "number", required: true, when: ["comerciais", "Sim"] }, { key: "funcionarios", label: "Possui funcionários próprios?", options: yn }, { key: "quantidade_funcionarios", label: "Quantidade de funcionários", type: "number", required: true, when: ["funcionarios", "Sim"] }, { key: "funcoes", label: "Funções (opcional)", when: ["funcionarios", "Sim"], wide: true }],
     [{ key: "convencao", label: "Possui Convenção Condominial?", options: yn, wide: true }, { key: "regimento", label: "Possui Regimento Interno?", options: yn, wide: true }],
     [...["agua", "gas"].flatMap(k => [{ key: k, label: `Existe leitura individual de ${k === "agua" ? "água" : "gás"}?`, options: yn, wide: true }, { key: k + "_leitor", label: "Quem realiza a leitura?", options: ["Síndico / condomínio", "Administradora", "Empresa terceirizada", "Outro", "Não sei informar"], when: [k, "Sim"] }, { key: k + "_medidores", label: "Quantidade aproximada de medidores", type: "number", when: [k, "Sim"] }, { key: k + "_outro", label: "Qual responsável? (opcional)", when: [k + "_leitor", "Outro"] }]), { key: "gas_empresa", label: "Qual empresa realiza a leitura de gás?", when: ["gas_leitor", "Empresa terceirizada"], wide: true }],
     [{ key: "conta", label: "Possui conta bancária própria?", options: yn }, { key: "banco", label: "Banco (opcional)", when: ["conta", "Sim"] }, { key: "saldo", label: "Saldo aproximado em caixa / contas / aplicações (opcional)", type: "money", wide: true }, { key: "inadimplencia", label: "Nível aproximado de inadimplência", options: ["Até 5%", "Acima de 5% até 10%", "Acima de 10% até 20%", "Acima de 20%", "Não sei informar"], wide: true }],
@@ -11,6 +11,30 @@ export const fields = [
     [{ key: "pintura", label: "Existe planejamento de pintura?", options: ["Não", "Sim", "Em estudo", "Não sei informar"], wide: true }, { key: "obra_planejada", label: "Existe obra ou benfeitoria planejada?", options: yn, wide: true }, { key: "obra_planejada_desc", label: "Descreva brevemente (opcional)", type: "textarea", when: ["obra_planejada", "Sim"], wide: true }, { key: "obra_atual", label: "Existe obra em andamento?", options: yn, wide: true }, { key: "obra_atual_desc", label: "Descreva brevemente (opcional)", type: "textarea", when: ["obra_atual", "Sim"], wide: true }],
     [{ key: "necessidade", label: "Principal dificuldade ou necessidade administrativa (opcional)", type: "textarea", wide: true }, { key: "prioridades", label: "O que é mais importante para você? (opcional)", type: "multi", options: priorities, wide: true }, { key: "prioridade_outro", label: "Outra prioridade (opcional)", when: ["prioridades", "Outro"], wide: true }, { key: "adicional", label: "Gostaria de nos contar algo mais? (opcional)", type: "textarea", wide: true }]
 ];
+// The original schema remains available for saved requests and older open forms.
+export const quickStages = ["Condomínio e contato", "Necessidades e envio"];
+const definition = key => fields.flat().find(f => f.key === key);
+export const quickFields = [
+    ["condominio", "cidade", "unidades_total", "responsavel", "telefone", "email"].map(key => ({...definition(key), required: true,
+        ...(key === "unidades_total" ? {label: "Quantidade total de unidades", hint: "Some apartamentos, casas e salas comerciais.", min: 1} : {})})),
+    [
+        {...definition("prioridades"), label: "O que você procura na gestão? (opcional)", options: ["Atendimento", "Transparência financeira", "Assessoria ao síndico", "Redução de custos", "Comunicação com moradores", "Outro"]},
+        definition("prioridade_outro"),
+        {...definition("necessidade"), label: "Quer contar algo sobre o condomínio? (opcional)", placeholder: "Ex.: precisamos de mais organização e apoio na prestação de contas."},
+        ...["funcionarios", "quantidade_funcionarios", "administradora", "agua", "gas", "gas_leitor", "gas_empresa", "gas_outro"].map(key => ({...definition(key), required: false, optionalDetail: true}))
+    ]
+];
+export function validateQuick(a, step) {
+    // Validate every supplied answer, including legacy keys, but require only essentials.
+    const required = new Set(quickFields[0].map(f => f.key));
+    const schema = step === undefined
+        ? [fields.flat().map(f => ({...f, required: required.has(f.key)}))]
+        : quickFields;
+    const errors = validate(a, step === undefined ? undefined : step, schema, true);
+    if ((step === undefined || step === 0) && a.unidades_total && Number(a.unidades_total) < 1)
+        errors.unidades_total = "Informe ao menos uma unidade.";
+    return errors;
+}
 export const statuses = ["Novo lead", "Em análise", "Contato realizado", "Proposta enviada", "Negociação", "Fechado", "Perdido"];
 export function visible(f, a) {
     if (!f.when)
@@ -35,9 +59,9 @@ export function cnpjValid(s) {
     const check = (base, weights) => { const rem = [...base].reduce((sum, c, i) => sum + (c.charCodeAt(0) - 48) * weights[i], 0) % 11; return String(rem < 2 ? 0 : 11 - rem); };
     return check(v.slice(0, 12), [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]) === v[12] && check(v.slice(0, 13), [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]) === v[13];
 }
-export function validate(a, step) {
+export function validate(a, step, schema = fields, quick = false) {
     const errors = {};
-    for (const f of (step === undefined ? fields.flat() : fields[step])) {
+    for (const f of (step === undefined ? schema.flat() : schema[step])) {
         if (!visible(f, a))
             continue;
         const value = a[f.key];
@@ -72,7 +96,7 @@ export function validate(a, step) {
         if (v && f.key === "cnpj" && !cnpjValid(v))
             errors[f.key] = "Confira o CNPJ.";
     }
-    if ((step === 1 || step === undefined) && a.unidades !== undefined && Number(a.unidades) === 0 && a.comerciais !== "Não sei informar" && Number(a.quantidade_comerciais || 0) === 0)
+    if (!quick && (step === 1 || step === undefined) && a.unidades !== undefined && Number(a.unidades) === 0 && a.comerciais !== "Não sei informar" && Number(a.quantidade_comerciais || 0) === 0)
         errors.unidades = "Informe ao menos uma unidade residencial ou comercial.";
     return errors;
 }
