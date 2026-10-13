@@ -25,7 +25,7 @@ export async function createProposalPdf(row){
  }
 
  newPage();wrapped(row.answers.condominio,bold,20,purple);line('Recebida em '+new Date(row.created_at).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo'}),regular,9,muted);y-=12;
- for(let i=0;i<fields.length;i++){if(y<130)newPage();wrapped(`${i+1}. ${stages[i]}`,bold,12,purple);y-=5;for(const f of fields[i].filter(f=>visible(f,row.answers))){if(y<100)newPage();wrapped(f.label,bold,9,muted);const v=row.answers[f.key];wrapped(Array.isArray(v)?v.join(', '):v||'Não informado',regular,10);y-=9}y-=8}
+ for(let i=0;i<fields.length;i++){const answered=fields[i].filter(f=>visible(f,row.answers) && (Array.isArray(row.answers[f.key])?row.answers[f.key].length:String(row.answers[f.key]??'').trim()));if(!answered.length)continue;if(y<130)newPage();wrapped(`${i+1}. ${stages[i]}`,bold,12,purple);y-=5;for(const f of answered){if(y<100)newPage();wrapped(f.label,bold,9,muted);const v=row.answers[f.key];wrapped(Array.isArray(v)?v.join(', '):v||'Não informado',regular,10);y-=9}y-=8}
  if(y<145)newPage();wrapped('Confirmação de uso das informações',bold,11,purple);wrapped('O responsável confirmou o uso das informações pela ALT para análise do condomínio, elaboração de proposta e contato relacionado à solicitação.');line('Versão do aviso: '+(row.consent_version||'2026-10-08'),regular,9,muted);
  const pages=pdf.getPages();pages.forEach((p,i)=>{p.drawLine({start:{x:margin,y:42},end:{x:width-margin,y:42},thickness:.5,color:rgb(.88,.86,.9)});p.drawText('ALT Gestão de Condomínios | Uso interno',{x:margin,y:28,size:8,font:regular,color:muted});p.drawText(`${i+1} / ${pages.length}`,{x:width-margin-35,y:28,size:8,font:regular,color:muted})});return Buffer.from(await pdf.save())
 }
