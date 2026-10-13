@@ -73,35 +73,70 @@ function field(f) {
   }
   return wrapper;
 }
+const banks = ['Banco do Brasil', 'Banrisul', 'Bradesco', 'Caixa Econômica Federal', 'Itaú', 'Inter', 'Nubank', 'Santander', 'Sicoob', 'Sicredi', 'Outro'];
 function quickQuestion(f) {
-  const wrapper = el('fieldset', undefined, 'field wide quick-question');
+  const wrapper = el('div', undefined, 'field');
   const reading = f.key === 'agua' || f.key === 'gas';
-  wrapper.append(el('legend', reading ? `Leitura individual de ${f.key === 'agua' ? 'água' : 'gás'}` : f.label, 'label'));
-  const options = reading ? ['Não tem', 'Administradora', 'Empresa terceirizada', 'Síndico / condomínio', 'Não sei'] : ['Sim', 'Não', 'Não sei'];
-  const choices = el('div', undefined, 'quick-choices');
-  const current = reading ? answers[f.key] === 'Não' ? 'Não tem' : answers[f.key] === 'Não sei informar' ? 'Não sei' : answers[f.key + '_leitor'] : answers[f.key] === 'Não sei informar' ? 'Não sei' : answers[f.key];
-  for (const [i, option] of options.entries()) {
-    const label = el('label'), input = el('input');
-    input.type = 'radio'; input.name = f.key; input.id = `${f.key}-${i}`; input.value = option; input.checked = current === option;
-    input.onchange = () => {
-      if (reading) {
-        answers[f.key] = option === 'Não tem' ? 'Não' : option === 'Não sei' ? 'Não sei informar' : 'Sim';
-        if (answers[f.key] === 'Sim') answers[f.key + '_leitor'] = option;
-        else delete answers[f.key + '_leitor'];
-      } else answers[f.key] = option === 'Não sei' ? 'Não sei informar' : option;
-      if (f.key === 'conta') {
-        if (answers.conta !== 'Sim') delete answers.banco;
-        render(); document.getElementById(input.id)?.focus({preventScroll: true});
-      }
-    };
-    label.append(input, document.createTextNode(option)); choices.append(label);
+  const title = reading ? `Leitura individual de ${f.key === 'agua' ? 'água' : 'gás'}` : f.key === 'funcionarios' ? 'Funcionários próprios CLT?' : f.label;
+  const label = el('label', title); label.htmlFor = f.key;
+  const select = el('select'); select.id = f.key;
+  const options = reading ? ['Não tem', 'Administradora', 'Empresa terceirizada', 'Síndico / condomínio', 'Não sei informar'] : ['Sim', 'Não', 'Não sei informar'];
+  const blank = el('option', 'Selecione'); blank.value = ''; select.append(blank);
+  for (const option of options) { const item = el('option', option); item.value = option; select.append(item); }
+  select.value = reading ? answers[f.key] === 'Não' ? 'Não tem' : answers[f.key] === 'Não sei informar' ? 'Não sei informar' : answers[f.key + '_leitor'] || '' : answers[f.key] || '';
+  select.onchange = () => {
+    if (reading) {
+      answers[f.key] = select.value === 'Não tem' ? 'Não' : select.value === 'Não sei informar' ? 'Não sei informar' : select.value ? 'Sim' : '';
+      if (answers[f.key] === 'Sim') answers[f.key + '_leitor'] = select.value;
+      else delete answers[f.key + '_leitor'];
+    } else answers[f.key] = select.value;
+    if (f.key === 'conta' && answers.conta !== 'Sim') delete answers.banco;
+    if (f.key === 'funcionarios' && answers.funcionarios !== 'Sim') delete answers.quantidade_funcionarios;
+    refreshFrom(f.key);
+  };
+  wrapper.append(label, select);
+  if (f.key === 'funcionarios') {
+    const hint = el('p', 'Contratados pelo condomínio com carteira assinada. Não inclua terceirizados.', 'field-hint');
+    hint.id = 'funcionarios-hint'; select.setAttribute('aria-describedby', hint.id); wrapper.append(hint);
   }
-  wrapper.append(choices); return wrapper;
+  return wrapper;
+}
+function bankField() {
+  const wrapper = el('div', undefined, 'field');
+  const label = el('label', 'Qual banco?'); label.htmlFor = 'banco';
+  const select = el('select'); select.id = 'banco';
+  const blank = el('option', 'Selecione o banco'); blank.value = ''; select.append(blank);
+  for (const bank of banks) { const option = el('option', bank); option.value = bank; select.append(option); }
+  const custom = answers.banco && !banks.includes(answers.banco);
+  select.value = custom ? 'Outro' : answers.banco || '';
+  select.onchange = () => { answers.banco = select.value; refreshFrom('banco'); };
+  wrapper.append(label, select);
+  if (select.value === 'Outro') {
+    const otherLabel = el('label', 'Nome do banco', 'other-bank-label'); otherLabel.htmlFor = 'banco-outro';
+    const input = el('input'); input.id = 'banco-outro'; input.maxLength = 150; input.placeholder = 'Informe o banco'; input.value = custom ? answers.banco : '';
+    input.oninput = () => { answers.banco = input.value; };
+    wrapper.append(otherLabel, input);
+  }
+  return wrapper;
 }
 function render() {
-  document.getElementById('stage-heading').textContent = 'Vamos conversar?';
-  document.getElementById('stage-hint').textContent = 'Informe seu contato e marque as opções. CNPJ e perguntas rápidas são opcionais.';
-  document.getElementById('fields').replaceChildren(...fields[0].map(field), field({...extraFields[0], placeholder: '00.000.000/0000-00'}), ...extraFields.slice(1).flatMap(f => f.key === 'conta' && answers.conta === 'Sim' ? [quickQuestion(f), field({...originalFields.flat().find(item => item.key === 'banco'), label: 'Qual banco? (opcional)', placeholder: 'Ex.: Sicredi, Banco do Brasil, Caixa', wide: true})] : [quickQuestion(f)]));
+  document.getElementById('stage-heading').textContent = 'Solicite sua proposta';
+  document.getElementById('stage-hint').textContent = 'Preencha os campos com * e selecione as opções que souber.';
+  const holder = document.getElementById('fields'); holder.replaceChildren();
+  const basics = el('fieldset', undefined, 'form-section wide');
+  basics.append(el('legend', 'Condomínio e contato', 'section-title'));
+  const basicsGrid = el('div', undefined, 'fields section-fields');
+  basicsGrid.append(...fields[0].map(field)); basics.append(basicsGrid);
+  const extra = el('fieldset', undefined, 'form-section wide');
+  extra.append(el('legend', 'Sobre o condomínio', 'section-title'), el('p', 'Opcional · Se não souber, pode deixar em branco.', 'section-caption'));
+  const extrasGrid = el('div', undefined, 'fields section-fields');
+  extrasGrid.append(field({...extraFields[0], wide: true, placeholder: '00.000.000/0000-00'}));
+  for (const f of extraFields.slice(1)) {
+    extrasGrid.append(quickQuestion(f));
+    if (f.key === 'conta' && answers.conta === 'Sim') extrasGrid.append(bankField());
+    if (f.key === 'funcionarios' && answers.funcionarios === 'Sim') extrasGrid.append(field({...originalFields.flat().find(item => item.key === 'quantidade_funcionarios'), required: false, label: 'Quantos funcionários próprios?', min: 1, placeholder: 'Ex.: 2'}));
+  }
+  extra.append(extrasGrid); holder.append(basics, extra);
   const review = document.getElementById('review'); review.replaceChildren();
   const label = el('label', undefined, 'consent'), box = el('input');
   box.id = 'consent'; box.type = 'checkbox'; box.checked = consent; box.required = true;
