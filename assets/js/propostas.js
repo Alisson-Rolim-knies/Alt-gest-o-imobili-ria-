@@ -1,6 +1,7 @@
-import {quickFields, visible, validateQuick as validate, clean} from '/shared/proposal.js';
+import {fields as originalFields, quickFields, visible, validateQuick as validate, clean} from '/shared/proposal.js';
 
 const fields = [quickFields[0].map(f => ({...f, wide: false, ...(f.key === 'responsavel' ? {label: 'Seu nome'} : {}), ...(f.key === 'telefone' ? {label: 'WhatsApp com DDD', placeholder: '(55) 99999-9999'} : {})}))];
+const extraFields = ['cnpj', 'agua', 'gas', 'conta', 'funcionarios'].map(key => ({...originalFields.flat().find(f => f.key === key), required: false}));
 const stages = ['Dados para sua proposta'];
 const form = document.getElementById('proposal-form');
 const lastStep = stages.length - 1;
@@ -72,10 +73,31 @@ function field(f) {
   }
   return wrapper;
 }
+function quickQuestion(f) {
+  const wrapper = el('fieldset', undefined, 'field wide quick-question');
+  const reading = f.key === 'agua' || f.key === 'gas';
+  wrapper.append(el('legend', reading ? `Leitura individual de ${f.key === 'agua' ? 'água' : 'gás'}` : f.label, 'label'));
+  const options = reading ? ['Não tem', 'Administradora', 'Empresa terceirizada', 'Síndico / condomínio', 'Não sei'] : ['Sim', 'Não', 'Não sei'];
+  const choices = el('div', undefined, 'quick-choices');
+  const current = reading ? answers[f.key] === 'Não' ? 'Não tem' : answers[f.key] === 'Não sei informar' ? 'Não sei' : answers[f.key + '_leitor'] : answers[f.key] === 'Não sei informar' ? 'Não sei' : answers[f.key];
+  for (const [i, option] of options.entries()) {
+    const label = el('label'), input = el('input');
+    input.type = 'radio'; input.name = f.key; input.id = `${f.key}-${i}`; input.value = option; input.checked = current === option;
+    input.onchange = () => {
+      if (reading) {
+        answers[f.key] = option === 'Não tem' ? 'Não' : option === 'Não sei' ? 'Não sei informar' : 'Sim';
+        if (answers[f.key] === 'Sim') answers[f.key + '_leitor'] = option;
+        else delete answers[f.key + '_leitor'];
+      } else answers[f.key] = option === 'Não sei' ? 'Não sei informar' : option;
+    };
+    label.append(input, document.createTextNode(option)); choices.append(label);
+  }
+  wrapper.append(choices); return wrapper;
+}
 function render() {
   document.getElementById('stage-heading').textContent = 'Vamos conversar?';
-  document.getElementById('stage-hint').textContent = 'Preencha os 6 campos abaixo. Os detalhes ficam para uma conversa com a ALT.';
-  document.getElementById('fields').replaceChildren(...fields[0].map(field));
+  document.getElementById('stage-hint').textContent = 'Informe seu contato e marque as opções. CNPJ e perguntas rápidas são opcionais.';
+  document.getElementById('fields').replaceChildren(...fields[0].map(field), field({...extraFields[0], placeholder: '00.000.000/0000-00'}), ...extraFields.slice(1).map(quickQuestion));
   const review = document.getElementById('review'); review.replaceChildren();
   const label = el('label', undefined, 'consent'), box = el('input');
   box.id = 'consent'; box.type = 'checkbox'; box.checked = consent; box.required = true;
