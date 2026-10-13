@@ -1,10 +1,12 @@
-import {quickFields as fields, quickStages as stages, visible, validateQuick as validate, clean} from '/shared/proposal.js';
+import {quickFields, visible, validateQuick as validate, clean} from '/shared/proposal.js';
 
+const fields = [quickFields[0].map(f => ({...f, wide: false, ...(f.key === 'responsavel' ? {label: 'Seu nome'} : {}), ...(f.key === 'telefone' ? {label: 'WhatsApp com DDD', placeholder: '(55) 99999-9999'} : {})}))];
+const stages = ['Dados para sua proposta'];
 const form = document.getElementById('proposal-form');
 const lastStep = stages.length - 1;
 const submissionKey = crypto.randomUUID();
 const startedAt = Date.now();
-let step = 0, answers = {}, consent = false, busy = false, submitted = false, detailsOpen = false;
+let step = 0, answers = {}, consent = false, busy = false, submitted = false;
 
 function el(tag, text, className) {
   const node = document.createElement(tag);
@@ -71,48 +73,19 @@ function field(f) {
   return wrapper;
 }
 function render() {
-  document.getElementById('step-label').textContent = `Etapa ${step + 1} de ${stages.length}`;
-  const progress = document.querySelector('.progress');
-  progress.setAttribute('aria-valuemax', stages.length); progress.setAttribute('aria-valuenow', step + 1);
-  document.getElementById('progress-fill').style.width = `${(step + 1) / stages.length * 100}%`;
-  document.getElementById('stage-heading').textContent = stages[step];
-  document.getElementById('stage-hint').textContent = step === 0 ? 'Só os dados essenciais para começarmos. Campos com * são obrigatórios.' : 'Esta etapa é opcional. Você já pode confirmar e enviar sua solicitação.';
-  document.getElementById('steps').replaceChildren(...stages.map((name, i) => {
-    const li = el('li', undefined, i === step ? 'current' : '');
-    if (i === step) li.setAttribute('aria-current', 'step');
-    li.append(el('span', i < step ? '✓' : i + 1), document.createTextNode(name)); return li;
-  }));
-  const holder = document.getElementById('fields');
-  holder.replaceChildren(...fields[step].filter(f => !f.optionalDetail && visible(f, answers)).map(field));
-  if (step === lastStep) {
-    const details = el('details', undefined, 'optional-details wide'); details.open = detailsOpen;
-    details.append(el('summary', 'Adicionar detalhes do condomínio (opcional)'));
-    details.append(el('p', 'Preencha apenas se quiser. Podemos conversar sobre isso depois.', 'muted'));
-    const extra = el('div', undefined, 'fields');
-    extra.append(...fields[step].filter(f => f.optionalDetail && visible(f, answers)).map(field));
-    details.append(extra); details.ontoggle = () => { detailsOpen = details.open; }; holder.append(details);
-  }
+  document.getElementById('stage-heading').textContent = 'Vamos conversar?';
+  document.getElementById('stage-hint').textContent = 'Preencha os 6 campos abaixo. Os detalhes ficam para uma conversa com a ALT.';
+  document.getElementById('fields').replaceChildren(...fields[0].map(field));
   const review = document.getElementById('review'); review.replaceChildren();
-  if (step === lastStep) {
-    const summary = el('details', undefined, 'summary'); summary.append(el('summary', 'Conferir meus dados'));
-    const dl = el('dl');
-    for (const f of fields.flat().filter(f => visible(f, answers))) {
-      const value = Array.isArray(answers[f.key]) ? answers[f.key].join(', ') : answers[f.key];
-      if (value) dl.append(el('dt', f.label), el('dd', value));
-    }
-    summary.append(dl);
-    const edit = el('button', 'Editar condomínio e contato', 'secondary'); edit.type = 'button'; edit.onclick = () => move(0);
-    summary.append(edit); review.append(summary);
-    const label = el('label', undefined, 'consent'), box = el('input');
-    box.id = 'consent'; box.type = 'checkbox'; box.checked = consent; box.required = true;
-    box.onchange = () => { consent = box.checked; showError(''); };
-    label.append(box, document.createTextNode('Autorizo a ALT a usar os dados informados para elaborar a proposta e entrar em contato comigo.'));
-    const privacy = el('a', 'Aviso de privacidade'); privacy.href = '/privacidade-propostas';
-    const p = el('p', undefined, 'muted'); p.append(privacy);
-    review.append(label, p);
-  }
-  document.getElementById('back').textContent = step ? '← Voltar' : 'Voltar ao site';
-  document.getElementById('next').textContent = step === lastStep ? 'Solicitar proposta →' : 'Continuar →';
+  const label = el('label', undefined, 'consent'), box = el('input');
+  box.id = 'consent'; box.type = 'checkbox'; box.checked = consent; box.required = true;
+  box.onchange = () => { consent = box.checked; showError(''); };
+  label.append(box, document.createTextNode('Autorizo a ALT a entrar em contato para preparar minha proposta.'));
+  const privacy = el('a', 'Aviso de privacidade'); privacy.href = '/privacidade-propostas';
+  const p = el('p', undefined, 'muted'); p.append(privacy);
+  review.append(label, p);
+  document.getElementById('back').textContent = 'Voltar ao site';
+  document.getElementById('next').textContent = 'Solicitar proposta →';
   showError('');
 }
 function move(nextStep) {
@@ -120,7 +93,7 @@ function move(nextStep) {
 }
 function displayErrors(errors) {
   if (Object.keys(errors).some(key => fields[step].some(f => f.key === key && f.optionalDetail))) {
-    detailsOpen = true; render();
+    render();
   }
   for (const [key, message] of Object.entries(errors)) {
     const input = document.getElementById(key);
