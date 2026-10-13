@@ -89,6 +89,10 @@ function quickQuestion(f) {
         if (answers[f.key] === 'Sim') answers[f.key + '_leitor'] = option;
         else delete answers[f.key + '_leitor'];
       } else answers[f.key] = option === 'Não sei' ? 'Não sei informar' : option;
+      if (f.key === 'conta') {
+        if (answers.conta !== 'Sim') delete answers.banco;
+        render(); document.getElementById(input.id)?.focus({preventScroll: true});
+      }
     };
     label.append(input, document.createTextNode(option)); choices.append(label);
   }
@@ -97,7 +101,7 @@ function quickQuestion(f) {
 function render() {
   document.getElementById('stage-heading').textContent = 'Vamos conversar?';
   document.getElementById('stage-hint').textContent = 'Informe seu contato e marque as opções. CNPJ e perguntas rápidas são opcionais.';
-  document.getElementById('fields').replaceChildren(...fields[0].map(field), field({...extraFields[0], placeholder: '00.000.000/0000-00'}), ...extraFields.slice(1).map(quickQuestion));
+  document.getElementById('fields').replaceChildren(...fields[0].map(field), field({...extraFields[0], placeholder: '00.000.000/0000-00'}), ...extraFields.slice(1).flatMap(f => f.key === 'conta' && answers.conta === 'Sim' ? [quickQuestion(f), field({...originalFields.flat().find(item => item.key === 'banco'), label: 'Qual banco? (opcional)', placeholder: 'Ex.: Sicredi, Banco do Brasil, Caixa', wide: true})] : [quickQuestion(f)]));
   const review = document.getElementById('review'); review.replaceChildren();
   const label = el('label', undefined, 'consent'), box = el('input');
   box.id = 'consent'; box.type = 'checkbox'; box.checked = consent; box.required = true;
