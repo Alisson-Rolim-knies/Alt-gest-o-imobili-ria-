@@ -194,6 +194,19 @@ function initializeCarousel() {
   updatePlayback();
 }
 
+// Botão flutuante do WhatsApp: fica oculto enquanto o topo da página está
+// visível, para não cobrir o carrossel. Sem JavaScript, ele aparece sempre.
+function initializeFloatingButton() {
+  const button = document.querySelector('.floating');
+  const hero = document.querySelector('.hero');
+  if (!button || !hero || !('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver(([entry]) => {
+    button.classList.toggle('is-hidden', entry.isIntersecting);
+  }, { threshold: 0.15 });
+  observer.observe(hero);
+}
+
 initializeMenu();
 initializeContactForm();
 initializeCarousel();
+initializeFloatingButton();
