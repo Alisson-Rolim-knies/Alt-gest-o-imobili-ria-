@@ -14,6 +14,8 @@ const ALT_CONFIG = {
     'SOL DA MONTANHA',
     'BELLA VISTA',
     'DI TRENTO',
+    'MALBEC',
+    'RESIDENCIAL VÓ LURDES',
   ],
 };
 
